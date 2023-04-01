@@ -92,36 +92,29 @@ class GameScene: SKScene {
     }
     
     func touchDown(atPoint pos : CGPoint) {
+        var isTouchingBackground = true
         for hc in self.circleArray {
             if hc.spriteNode.contains(pos){
                 self.flagA = 1
                 self.touchedCircle = hc.spriteNode
                 self.touchedhourCircle = hc
-                //NSLog(hc.spriteNode.name!)
+                isTouchingBackground = false
+                switch self.touchedhourCircle.filled{
+                    case 0:
+                        self.holdCounter=0
+                    case 25:
+                        self.holdCounter=100
+                    case 50:
+                        self.holdCounter=200
+                    case 75:
+                        self.holdCounter=300
+                    case 100:
+                        self.holdCounter=400
+                    default:
+                        self.holdCounter=0
+                    }
             }
         }
-        switch self.touchedhourCircle.filled{
-        case 0:
-            self.holdCounter=0
-        case 25:
-            self.holdCounter=100
-        case 50:
-            self.holdCounter=200
-        case 75:
-            self.holdCounter=300
-        case 100:
-            self.holdCounter=400
-        default:
-            self.holdCounter=0
-        }
-        /*for node in self.children {
-            if node.contains(pos) {
-                self.flagA = 1
-                self.touchedCircle=node as! SKSpriteNode
-                NSLog(node.name!)
-            }
-        }
-         */
     }
     
     func touchMoved(toPoint pos : CGPoint) {
@@ -200,7 +193,7 @@ class GameScene: SKScene {
         self.number0.fontColor = UIColor.red
         self.addChild(number0)
         self.number0.fontSize=48
-        self.number0.position=CGPoint(x: circlepoint.x, y: circlepoint.y+25)
+        self.number0.position=CGPoint(x: circlepoint.x, y: circlepoint.y+100)
         //NSLog(self.touchedCircle.name!)
         NSLog(String(self.touchedhourCircle.index))
         self.touchedhourCircle.filled=0
@@ -220,7 +213,7 @@ class GameScene: SKScene {
         self.number25.fontColor = UIColor.red
         self.addChild(number25)
         self.number25.fontSize=48
-        self.number25.position=CGPoint(x: circlepoint.x, y: circlepoint.y+25)
+        self.number25.position=CGPoint(x: circlepoint.x, y: circlepoint.y+100)
         //NSLog(self.touchedCircle.name!)
         NSLog(String(self.touchedhourCircle.index))
         self.touchedhourCircle.filled=25
@@ -242,7 +235,7 @@ class GameScene: SKScene {
         self.number50.fontColor = UIColor.red
         self.addChild(number50)
         self.number50.fontSize=48
-        self.number50.position=CGPoint(x: circlepoint.x, y: circlepoint.y+25)
+        self.number50.position=CGPoint(x: circlepoint.x, y: circlepoint.y+100)
         //NSLog(self.touchedCircle.name!)
         NSLog(String(self.touchedhourCircle.index))
         self.touchedhourCircle.filled=50
@@ -262,7 +255,7 @@ class GameScene: SKScene {
         self.number75.fontColor = UIColor.red
         self.addChild(number75)
         self.number75.fontSize=48
-        self.number75.position=CGPoint(x: circlepoint.x, y: circlepoint.y+25)
+        self.number75.position=CGPoint(x: circlepoint.x, y: circlepoint.y+100)
         //NSLog(self.touchedCircle.name!)
         NSLog(String(self.touchedhourCircle.index))
         self.touchedhourCircle.filled=75
@@ -282,7 +275,7 @@ class GameScene: SKScene {
         self.number100.fontColor = UIColor.red
         self.addChild(number100)
         self.number100.fontSize=48
-        self.number100.position=CGPoint(x: circlepoint.x, y: circlepoint.y+25)
+        self.number100.position=CGPoint(x: circlepoint.x, y: circlepoint.y+100)
         //NSLog(self.touchedCircle.name!)
         NSLog(String(self.touchedhourCircle.index))
         self.touchedhourCircle.filled=100
